@@ -1,0 +1,31 @@
+name: paradrop-governor
+version: 0.1
+summary: Paradrop Governor is a service that enables device administration.
+description: |
+  The Paradrop Governor is a small service designed to help with
+  administration tasks on deployed Ubuntu Core systems.
+
+confinement: devmode
+grade: stable
+
+apps:
+  governor:
+    command: governor
+    daemon: simple
+    environment:
+      GOVERNOR_SOCKET: $SNAP_COMMON/governor.socket
+    plugs:
+      - network
+      - network-bind
+
+parts:
+  governor:
+    plugin: go
+    source: .
+    go-importpath: https://github.com/ParadropLabs/governor
+
+slots:
+  governor-control:
+    interface: content
+    read:
+      - $SNAP_COMMON
