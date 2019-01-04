@@ -19,10 +19,13 @@ apps:
       - network-bind
 
 parts:
+  go:
+    source-tag: go1.10.4
   governor:
+    after: [go]
     plugin: go
-    source: .
-    go-importpath: https://github.com/ParadropLabs/governor
+    source: https://github.com/ParadropLabs/governor.git
+    go-importpath: github.com/ParadropLabs/governor
 
 slots:
   governor-control:
