@@ -30,5 +30,5 @@ parts:
 slots:
   governor-control:
     interface: content
-    read:
+    write:
       - $SNAP_COMMON
